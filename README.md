@@ -1,160 +1,147 @@
-## **Model Card**
 
-### **Model Overview**
+# **Model Card**
+
+## **Model Overview**
 - **Model Name**: Accident Severity Prediction
-- **Objective**: To predict accident severity (Fatal, Serious, Slight) based on environmental, road, and location features.
+- **Objective**: Predict the severity of road accidents (Fatal, Serious, Slight) based on environmental, road, and location data.
 - **Type of Task**: Multi-class classification
 - **Models Used**:
-  - **Extra Trees Classifier**: An ensemble method for robust predictions.
-  - **Naive Bayes Classifier**: Probabilistic classifier based on Bayes' theorem.
-  - **Decision Tree Classifier**: A tree-based method for interpretable predictions.
+  - **Extra Trees Classifier**: Ensemble method offering robust predictions.
+  - **Naive Bayes Classifier**: Probabilistic model leveraging Bayes' theorem.
+  - **Decision Tree Classifier**: Tree-based approach for interpretable results.
 
 ---
 
-### **Intended Use**
-- **Target Users**:
-  - Road safety analysts
-  - Transportation authorities
-  - Emergency response teams
-- **Applications**:
-  - Identifying accident hotspots
-  - Allocating resources for traffic management
-  - Developing safety measures based on key predictors
+## **Intended Use**
+### **Target Users**
+- Road safety analysts
+- Transportation authorities
+- Emergency response teams
+
+### **Applications**
+- Identifying accident-prone areas
+- Resource allocation for traffic management
+- Developing targeted safety measures
 
 ---
 
-### **Datasets**
-- **Source**: UK Accident Dataset
-- **Size**:
-  - Rows: Up to 50,000 sampled
+## **Datasets**
+- **Source**: UK Accident Dataset (2000–2018)
+- **Sample Size**: 
+  - Rows: 50,000 (sampled)
   - Columns: Latitude, Longitude, Date, Day_of_Week, etc.
-- **Target Variable**: `Accident_Severity` (mapped to classes: 0 = Fatal, 1 = Serious, 2 = Slight)
+- **Target Variable**: `Accident_Severity` (classes: 0 = Fatal, 1 = Serious, 2 = Slight)
+
+### **Dataset Description**
+- **Context**: Comprehensive dataset covering over 1.8 million accidents, offering insights into changes in traffic patterns and safety over time.
+- **Content**: Features include:
+  - `Latitude`, `Longitude`: Accident location
+  - `Accident_Severity`: Severity scale (1-5)
+  - `Number_of_Vehicles`: Vehicles involved
+  - `Number_of_Casualties`: Casualties
+  - `Light_Conditions`, `Weather_Conditions`, `Road_Surface_Conditions`: Environment factors
+  - `Year`: Year of the event
+
+### **Inspiration**
+Key questions include:
+- Which days of the week see the most casualties?
+- How do speed limits vary with accidents across different days?
+- What role do light and weather conditions play in predicting severity?
+- Can the data improve accident severity prediction?
 
 ---
 
-### **Metrics**
+## **Metrics**
 - **Evaluation Metrics**:
-  - **Accuracy**: Overall correctness of predictions.
-  - **Mean Squared Error (MSE)**: Quantifies prediction errors.
-  - **Precision, Recall, F1-Score**: For detailed performance across classes.
-  - **Confusion Matrix**: Visualization of true vs. predicted labels.
+  - **Accuracy**: Overall model performance.
+  - **Mean Squared Error (MSE)**: Measures prediction error.
+  - **Precision, Recall, F1-Score**: Provides class-specific insights.
+  - **Confusion Matrix**: Visualizes true vs. predicted labels.
 
 ---
 
-### **Performance**
-Evaluating Extra Trees...
-Accuracy: 0.96
-Mean Squared Error: 0.04
+## **Performance**
+### **Extra Trees Classifier**
+- **Accuracy**: 96%
+- **Mean Squared Error**: 0.04
+- **Classification Report**:
+  - Precision: 97%
+  - Recall: 96%
+  - F1-Score: 96%
 
-Extra Trees Classification Report:
-              precision    recall  f1-score   support
+### **Naive Bayes Classifier**
+- **Accuracy**: 38%
+- **Mean Squared Error**: 1.44
+- **Classification Report**:
+  - Precision: 36%
+  - Recall: 37%
+  - F1-Score: 33%
 
-           0       0.99      1.00      1.00     10949
-           1       0.91      1.00      0.95     10840
-           2       1.00      0.89      0.94     10796
-
-    accuracy                           0.96     32585
-   macro avg       0.97      0.96      0.96     32585
-weighted avg       0.97      0.96      0.96     32585
-
-
-Evaluating Naive Bayes...
-Accuracy: 0.38
-Mean Squared Error: 1.44
-
-Naive Bayes Classification Report:
-              precision    recall  f1-score   support
-
-           0       0.39      0.53      0.45     10949
-           1       0.34      0.06      0.11     10840
-           2       0.36      0.53      0.43     10796
-
-    accuracy                           0.38     32585
-   macro avg       0.36      0.37      0.33     32585
-weighted avg       0.36      0.38      0.33     32585
-
-
-Evaluating Decision Tree...
-Accuracy: 0.94
-Mean Squared Error: 0.07
-
-Decision Tree Classification Report:
-              precision    recall  f1-score   support
-
-           0       0.99      1.00      0.99     10949
-           1       0.87      1.00      0.93     10840
-           2       1.00      0.83      0.91     10796
-
-    accuracy                           0.94     32585
-   macro avg       0.95      0.94      0.94     32585
-weighted avg       0.95      0.94      0.94     32585
-
+### **Decision Tree Classifier**
+- **Accuracy**: 94%
+- **Mean Squared Error**: 0.07
+- **Classification Report**:
+  - Precision: 95%
+  - Recall: 94%
+  - F1-Score: 94%
 
 ---
 
-### **Limitations**
-1. **Data Bias**: Dataset may overrepresent specific accident types or regions.
-2. **Feature Availability**: Model assumes all relevant features are present; missing features may degrade performance.
-3. **Imbalanced Data**: Requires oversampling techniques like `RandomOverSampler` to balance classes.
+## **Limitations**
+1. **Data Bias**: Dataset may favor certain accident types or regions.
+2. **Feature Availability**: Missing features can impact performance.
+3. **Imbalanced Data**: Requires techniques like `RandomOverSampler` for balancing.
 
 ---
 
-### **Ethical Considerations**
-- **Fairness**: Ensure that predictions are not biased toward specific geographic or demographic groups.
-- **Privacy**: Protect sensitive location data and personal information if present.
-- **Safety**: Misclassification of severe accidents may lead to underprepared responses.
+## **Ethical Considerations**
+- **Fairness**: Avoid geographic or demographic bias.
+- **Privacy**: Ensure sensitive location and personal data are anonymized.
+- **Safety**: Minimize severe accident misclassification to prevent underprepared responses.
 
 ---
 
 ## **Data Sheet**
 
 ### **Motivation**
-1. **Why is this dataset created?**
-   - To analyze and predict the severity of road accidents for improved traffic management and safety measures.
-2. **Who funded the dataset?**
-   - Sourced from Kaggle. https://www.kaggle.com/datasets/devansodariya/road-accident-united-kingdom-uk-dataset
-
----
+1. **Purpose**: To analyze and predict accident severity for improved traffic management and safety.
+2. **Source**: Kaggle dataset [link](https://www.kaggle.com/datasets/devansodariya/road-accident-united-kingdom-uk-dataset).
 
 ### **Composition**
 1. **Features**:
-   - **Numerical**: Latitude, Longitude, day, month, `Speed_limit`.
-   - **Categorical**: Day_of_Week, `Urban_or_Rural_Area`.
-2. **Size**: 50,000 records (sampled).
-3. **Target Variable**: `Accident_Severity` (Multi-class: Fatal, Serious, Slight).
-
----
+   - **Numerical**: Latitude, Longitude, Day, Month, Speed_limit.
+   - **Categorical**: Day_of_Week, Urban_or_Rural_Area.
+2. **Sample Size**: 50,000 records.
+3. **Target Variable**: `Accident_Severity`.
 
 ### **Collection Process**
-1. **How is the data collected?**
-   - Through official accident reports, sensor data, and location-based inputs.
-2. **What is the timeframe?**
-   - Likely historical data spanning multiple years.
+1. **Data Collection**: Accident reports, sensor data, location-based data.
+2. **Timeframe**: Historical data spanning multiple years.
 
 ---
 
-### **Preprocessing Steps**
-1. Handle missing values:
+## **Preprocessing Steps**
+1. **Handling Missing Values**:
    - Drop rows with null values in key columns (`Longitude`, `Time`, etc.).
-2. Categorical encoding:
-   - Apply `LabelEncoder` for categorical variables.
-3. Scaling:
-   - Standardize numerical features using `StandardScaler`.
-4. Class balancing:
-   - Use `RandomOverSampler` to handle imbalanced target classes.
+2. **Categorical Encoding**:
+   - Use `LabelEncoder` for categorical features.
+3. **Feature Scaling**:
+   - Standardize numerical variables using `StandardScaler`.
+4. **Class Balancing**:
+   - Apply `RandomOverSampler` to address imbalanced classes.
 
 ---
 
-### **Usage**
+## **Usage**
 1. **Primary Use**:
-   - Predicting accident severity for actionable insights.
+   - Accident severity prediction for actionable insights.
 2. **Not Suitable For**:
-   - Predicting individual driver behavior or direct causation analysis.
+   - Individual driver behavior prediction or causation analysis.
 
 ---
 
-### **Ethics and Privacy**
+## **Ethics and Privacy**
 1. **Sensitive Information**:
-   - Ensure location data and personal identifiers are anonymized.
+   - Ensure anonymization of location and personal data.
 2. **Bias Awareness**:
-   - Regular audits to verify model fairness across demographic and geographic boundaries.
+   - Conduct audits to maintain fairness across demographics and geographies.
